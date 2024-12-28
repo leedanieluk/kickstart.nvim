@@ -164,6 +164,15 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Custom Keymaps
+vim.keymap.set('n', '<leader>sa', '<cmd>FzfLua lsp_live_workspace_symbols<CR>', { desc = '[S]earch [A]ll files' })
+vim.keymap.set('n', '<leader>co', function()
+  vim.lsp.buf.code_action {
+    context = { only = { 'source.organizeImports' } },
+    apply = true,
+  }
+end)
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
